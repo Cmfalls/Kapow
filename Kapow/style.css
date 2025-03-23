@@ -1,0 +1,370 @@
+body {
+    background: url('assets/home-bg.webp') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Trebuchet MS', sans-serif;
+    color: white;
+}
+
+@keyframes backgroundAnimation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+.visible {
+    display: flex;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+.home-button {
+    padding: 12px 24px;
+    margin: 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #2a5298;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: 0.2s;
+}
+
+.home-button:hover {
+    background-color: #2a5298;
+    color: white;
+}
+
+#mapCanvas {
+    border: 2px solid white;
+    background-color: #305080;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+#mapScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #1e3c72; /* Add a distinct background color for the map screen */
+    color: white;
+    text-align: center;
+}
+
+#levelSelectScreen {
+    position: relative; /* Ensure icons are positioned relative to this container */
+}
+
+img {
+    pointer-events: auto; /* Ensure icons are clickable */
+}
+
+.title-art {
+    display: block;
+    margin: 40px auto 20px auto;
+    width: 500px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.locked-icon {
+    width: 80px;
+    height: 80px;
+    opacity: 0.5;
+    cursor: default;
+}
+
+.unlocked-icon {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.big-button {
+    padding: 16px 32px;
+    font-size: 1.4rem;
+    background: linear-gradient(135deg, #ffce00, #ff7600);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;
+    width: 250px;
+}
+
+.big-button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ff7600, #ffce00);
+}
+
+.home-screen {
+    background-image: url('assets/home-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 400px;
+    margin-bottom: 30px;
+    animation: floatLogo 3s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+.home-screen button {
+    background: linear-gradient(to right, #ff9933, #ff6600);
+    border: none;
+    color: white;
+    padding: 16px 40px; /* Bigger buttons */
+    margin: 10px;
+    font-size: 24px; /* Bigger font */
+    border-radius: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.home-screen button:hover {
+    transform: scale(1.08);
+    opacity: 0.9;
+}
+
+#logo {
+    width: 350px;
+    margin-bottom: 30px;
+    animation: float 4s ease-in-out infinite;
+    position: relative; /* Ensures proper stacking and layout */
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+button {
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff9900, #ff3300);
+    color: white;
+    cursor: pointer;
+    z-index: 10; /* Ensures buttons are above other elements */
+}
+
+button:hover {
+    background: linear-gradient(90deg, #ff6600, #cc0000);
+    transform: scale(1.05);
+}
+
+#homeScreen, #mapScreen, #deckScreen, #instructionsModal, #creditsModal, #battleScreen, #eventPopup {
+    display: none; /* Hide all screens by default */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #1e3c72; /* Default background color */
+    color: white;
+    text-align: center;
+}
+
+#homeScreen {
+    display: flex; /* Show home screen by default */
+    background-image: url('assets/home-bg.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+#mapScreen {
+    background-color: #1e3c72;
+}
+
+#deckScreen {
+    background-color: #2a5298;
+}
+
+#battleScreen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(to bottom right, #222, #444);
+    color: white;
+    padding: 30px;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+#playerHP, #enemyHP {
+    font-size: 1.5rem;
+    margin: 10px;
+}
+
+.battle-fields {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 30px;
+}
+
+#playerField, #enemyField {
+    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid #888;
+    border-radius: 12px;
+    padding: 15px;
+    min-height: 150px;
+}
+
+.creature-card, .enemy-card {
+    background: #333;
+    border: 1px solid #666;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    width: 120px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.creature-card:hover, .enemy-card:hover {
+    transform: scale(1.05);
+    background: #555;
+}
+
+#battleLog {
+    width: 90%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #999;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 30px;
+    font-family: monospace;
+}
+
+.victory-modal, .defeat-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #222;
+    border: 3px solid gold;
+    padding: 30px;
+    border-radius: 12px;
+    z-index: 9999;
+    text-align: center;
+}
+
+.victory-modal button, .defeat-modal button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: linear-gradient(to right, gold, orange);
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.victory-modal h2, .defeat-modal h2 {
+    color: gold;
+}
+
+.collection-container, .deck-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.card-slot {
+    background: #222;
+    border: 1px solid #555;
+    padding: 10px;
+    width: 160px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    transition: transform 0.2s;
+}
+
+.card-slot:hover {
+    transform: scale(1.05);
+    background: #333;
+}
+
+#deckScreen h2 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#deckCount {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#deckScreen button {
+    display: block;
+    margin: 15px auto;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff9933, #ff6600);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+#deckScreen button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
