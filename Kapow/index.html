@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAPOW - Card Battle Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Home Screen -->
+  <div id="homeScreen" class="screen">
+    <img id="logo" src="assets/KAPOW.png" alt="Kapow Logo" />
+    <button onclick="showScreen('mapScreen')" class="home-button">Start Adventure</button>
+    <button onclick="showScreen('deckScreen')" class="home-button">Deck Manager</button>
+    <button onclick="showScreen('instructionsModal')" class="home-button">How to Play</button>
+    <button onclick="showScreen('creditsModal')" class="home-button">Credits</button>
+    <button onclick="resetGame()" class="home-button">Reset Game</button>
+  </div>
+
+  <!-- Simple Level Progression Screen -->
+  <div id="mapScreen" class="screen hidden">
+    <h2>Level Progression</h2>
+    <div id="levelList" class="button-container"></div>
+    <button onclick="showScreen('homeScreen')" class="home-button">Return to Home</button>
+  </div>
+
+  <!-- Deck Screen -->
+  <div id="deckScreen" class="screen hidden">
+    <h2>Deck Builder</h2>
+    <div id="collectionList" class="collection-container"></div>
+    <div id="deckList" class="deck-container"></div>
+    <button onclick="showScreen('homeScreen')" class="home-button">Return to Home</button>
+  </div>
+
+  <!-- Instructions Modal -->
+  <div id="instructionsModal" class="screen hidden">
+    <h2>How to Play</h2>
+    <p>Play cards, build decks, and defeat bosses!</p>
+    <button onclick="showScreen('homeScreen')" class="home-button">Return to Home</button>
+  </div>
+
+  <!-- Credits Modal -->
+  <div id="creditsModal" class="screen hidden">
+    <h2>Credits</h2>
+    <p>Made by Connor Falls and the squad.</p>
+    <button onclick="showScreen('homeScreen')" class="home-button">Return to Home</button>
+  </div>
+
+  <!-- Battle Screen -->
+  <div id="battleScreen" class="screen hidden">
+    <h2>Battle Screen</h2>
+    <div id="playerStats">
+        <p>Player HP: <span id="playerHp">20</span></p>
+        <p>Player Mana: <span id="playerMana">3</span></p>
+    </div>
+    <div id="enemyStats">
+        <p>Enemy HP: <span id="enemyHp">20</span></p>
+    </div>
+    <div id="playerCreaturesField" style="border: 1px solid #fff; padding: 10px; margin-bottom: 20px;">
+        <h3>Your Creatures</h3>
+        <div id="playerCreatures"></div>
+    </div>
+    <div id="enemyCreaturesField" style="border: 1px solid #fff; padding: 10px; margin-bottom: 20px;">
+        <h3>Enemy Creatures</h3>
+        <div id="enemyCreatures"></div>
+    </div>
+    <div id="battleLog" style="height: 200px; overflow-y: scroll; border: 1px solid #fff; margin-bottom: 20px; padding: 10px;"></div>
+    <div id="playerHand" style="border: 1px solid #fff; padding: 10px; margin-bottom: 20px;">
+        <h3>Your Hand</h3>
+        <div id="handCards"></div>
+    </div>
+    <button id="attackPhaseButton" onclick="startAttackPhase()" class="home-button">Start Attack Phase</button>
+    <button id="resolveCombatBtn" style="display:none;" onclick="resolveCombat()" class="home-button">Resolve Combat</button>
+  </div>
+
+  <!-- Event Popup -->
+  <div id="eventPopup" class="screen hidden" style="background-color: rgba(0,0,0,0.85); position: fixed; top: 0; left: 0; width: 100%; height: 100%; padding: 40px; text-align: center;">
+    <h2 id="eventTitle"></h2>
+    <p id="eventDescription"></p>
+    <div id="eventOptions" style="margin-top: 30px;"></div>
+  </div>
+
+  <script src="deck.js"></script>
+  <script src="events.js"></script>
+  <script src="battles.js"></script>
+  <script src="map.js"></script> <!-- drawMap gets defined here -->
+  <script src="game.js"></script> <!-- LAST: contains logic that runs drawMap -->
+</body>
+</html>
